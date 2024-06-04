@@ -1,0 +1,27 @@
+{
+    "name": "boost",
+    "image": "gcc_boost",
+    "shutdownAction": "stopContainer",
+    "runArgs": [
+        "--name", "boost-sandbox"
+    ],
+    "remoteUser": "developer",
+    "remoteEnv": {
+        // "http_proxy": "http://192.168.1.1:3128",
+        // "https_proxy": "http://192.168.1.1:3128"
+    },
+    "customizations": {
+        "vscode" : {
+            "settings": {
+
+            },
+            
+            "extensions": [
+                // "twxs.cmake",
+                // "ms-vscode.cmake-tools",
+                // "ms-vscode.cpptools",
+                // "ms-vscode.cpptools-extension-pack"
+            ]
+        }
+    }
+}
