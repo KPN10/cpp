@@ -1,0 +1,30 @@
+{
+    "name": "tcp_client",
+    // "build": {
+    //     "dockerfile": "Dockerfile",
+    //     "target": "gcc_env"
+    // },
+    "image": "gcc",
+    "shutdownAction": "stopContainer",
+    "runArgs": [
+        "--name", "tcp_client"
+    ],
+    "remoteUser": "developer",
+    "remoteEnv": {
+
+    },
+    "customizations": {
+        "vscode" : {
+            "settings": {
+
+            },
+            
+            "extensions": [
+                // "twxs.cmake",
+                // "ms-vscode.cmake-tools",
+                // "ms-vscode.cpptools",
+                // "ms-vscode.cpptools-extension-pack"
+            ]
+        }
+    }
+}

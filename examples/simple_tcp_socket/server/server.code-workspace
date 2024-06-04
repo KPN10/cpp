@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "Library",
+			"path": "../../../library"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"iostream": "cpp"
+		}
+	},
+	"configurations": [
+		{
+			"name": "Linux",
+			"includePath": ["/usr/include", "${workspaceFolder}"]
+		}
+	]
+}

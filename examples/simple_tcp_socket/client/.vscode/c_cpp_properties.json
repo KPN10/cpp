@@ -1,0 +1,22 @@
+{
+    "env": {
+
+    },
+    "configurations": [
+        {
+            "name": "Linux",
+            "compilerPath": "/usr/bin/g++",
+            "intelliSenseMode": "linux-gcc-x64",
+            "cppStandard": "gnu++11",
+            "includePath": [ "/usr/include"
+            ],
+            "browse": {
+                "path": [
+                    "/usr/include"
+                ]
+            }
+        }
+    ],
+    "version": 4,
+    "enableConfigurationSquiggles": true
+}
