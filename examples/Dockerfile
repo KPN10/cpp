@@ -1,6 +1,5 @@
 FROM ubuntu:22.04
 ARG HTTP_PROXY
-ARG HTTPS_PROXY
 ARG VSCODE_COMMIT_ID
 ARG UID
 ARG GID
@@ -49,3 +48,4 @@ RUN ~/.vscode-server/bin/${VSCODE_COMMIT_ID}/bin/code-server \
 RUN ~/.vscode-server/bin/${VSCODE_COMMIT_ID}/bin/code-server \
     --install-extension ~/ms-azuretools.vscode-docker-1.29.1.vsix
 RUN rm -dRf *.vsix
+

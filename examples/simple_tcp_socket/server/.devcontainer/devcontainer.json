@@ -1,9 +1,19 @@
 {
+    "build": {
+        "dockerfile": "../../../Dockerfile",
+        "args": {
+            "CONTAINER_USER_NAME": "${localEnv:USER}",
+            "CONTAINER_GROUP_NAME": "${localEnv:USER_GROUP}",
+            "CONTAINER_UID": "${localEnv:USER_UID}",
+            "CONTAINER_GID": "${localEnv:USER_GID}",
+            "UID": 1000,
+            "GID": 1000,
+            "VSCODE_COMMIT_ID": "89de5a8d4d6205e5b11647eb6a74844ca23d2573",
+            "PROXY": "http://192.168.1.1:3128"
+        }
+    },
+
     "name": "tcp_server",
-    // "build": {
-    //     "dockerfile": "Dockerfile",
-    //     "target": "gcc_env"
-    // },
     "image": "gcc",
     "shutdownAction": "stopContainer",
     "runArgs": [
@@ -17,14 +27,7 @@
         "vscode" : {
             "settings": {
 
-            },
-            
-            "extensions": [
-                // "twxs.cmake",
-                // "ms-vscode.cmake-tools",
-                // "ms-vscode.cpptools",
-                // "ms-vscode.cpptools-extension-pack"
-            ]
+            }
         }
     }
 }

@@ -1,6 +1,5 @@
 FROM ubuntu:22.04
-ARG HTTP_PROXY
-ARG HTTPS_PROXY
+ARG PROXY
 ARG BOOST_VERSION_MAJOR
 ARG BOOST_VERSION_MINOR
 ARG BOOST_VERSION_PATCH
@@ -18,7 +17,7 @@ RUN addgroup -gid $GID nonroot && \
 USER developer
 WORKDIR /home/developer
 
-RUN curl --proxy $HTTP_PROXY \
+RUN curl --proxy $PROXY \
     -fsSL "https://update.code.visualstudio.com/commit:${VSCODE_COMMIT_ID}/server-linux-x64/stable" \
     -o /home/developer/vscode-server-linux-x64.tar.gz && \
     mkdir -p ~/.vscode-server/bin/$VSCODE_COMMIT_ID && \
@@ -27,20 +26,9 @@ RUN curl --proxy $HTTP_PROXY \
     rm ~/vscode-server-linux-x64.tar.gz && \
     touch ~/.vscode-server/bin/$VSCODE_COMMIT_ID/0
 
-# COPY extensions/* /home/developer
-# RUN ~/.vscode-server/bin/${VSCODE_COMMIT_ID}/bin/code-server \
-#     --install-extension ~/twxs.cmake-0.0.17.vsix
-# RUN ~/.vscode-server/bin/${VSCODE_COMMIT_ID}/bin/code-server \
-#     --install-extension ~/ms-vscode.cpptools-extension-pack-1.3.0.vsix
-# RUN ~/.vscode-server/bin/${VSCODE_COMMIT_ID}/bin/code-server \
-#     --install-extension ~/ms-vscode.cpptools-1.20.5@linux-x64.vsix
-# RUN ~/.vscode-server/bin/${VSCODE_COMMIT_ID}/bin/code-server \
-#     --install-extension ~/ms-vscode.cmake-tools-1.18.41.vsix
-# RUN ~/.vscode-server/bin/${VSCODE_COMMIT_ID}/bin/code-server \
-#     --install-extension ~/ms-azuretools.vscode-docker-1.29.1.vsix
 RUN curl \
     --compressed \
-    --proxy $HTTP_PROXY \
+    --proxy $PROXY \
     --output twxs.cmake-0.0.17.vsix \
     https://marketplace.visualstudio.com/_apis/public/gallery/publishers/twxs/vsextensions/cmake/0.0.17/vspackage \
     --output ms-vscode.cmake-tools-1.18.41.vsix \
@@ -65,7 +53,7 @@ RUN ~/.vscode-server/bin/${VSCODE_COMMIT_ID}/bin/code-server \
 RUN rm -dRf *.vsix
 
 ENV BOOST_VERSION=${BOOST_VERSION_MAJOR}_${BOOST_VERSION_MINOR}_${BOOST_VERSION_PATCH}
-RUN curl --proxy $HTTP_PROXY \
+RUN curl --proxy $PROXY \
     "https://archives.boost.io/release/${BOOST_VERSION_MAJOR}.${BOOST_VERSION_MINOR}.${BOOST_VERSION_PATCH}/source/boost_${BOOST_VERSION}.tar.gz" \
     -o /home/developer/boost_${BOOST_VERSION}.tar.gz && \
     tar -xvzf boost_${BOOST_VERSION}.tar.gz && \

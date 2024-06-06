@@ -13,7 +13,8 @@
                 "-I",
                 "/opt/boost/include",
                 "-L",
-                "/opt/boost/lib/**"
+                "/opt/boost/lib/**",
+                "-std=c++17"
             ],
             "options": {
                 "cwd": "${fileDirname}"

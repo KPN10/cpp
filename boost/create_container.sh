@@ -1,5 +1,9 @@
 #!/bin/bash
 
+BOOST_VERSION_MAJOR=1
+BOOST_VERSION_MINOR=85
+BOOST_VERSION_PATCH=0
+
 host_uid=$(id -u)
 host_gid=$(id -g)
 
@@ -13,9 +17,9 @@ function db {
         --memory 1g \
         --build-arg HTTP_PROXY="http://192.168.1.1:3128" \
         --build-arg HTTPS_PROXY="http://192.168.1.1:3128" \
-        --build-arg BOOST_VERSION_MAJOR="1" \
-        --build-arg BOOST_VERSION_MINOR="85" \
-        --build-arg BOOST_VERSION_PATCH="0" \
+        --build-arg BOOST_VERSION_MAJOR=$BOOST_VERSION_MAJOR \
+        --build-arg BOOST_VERSION_MINOR=$BOOST_VERSION_MINOR \
+        --build-arg BOOST_VERSION_PATCH=$BOOST_VERSION_PATCH \
         --build-arg UID=$host_uid \
         --build-arg GID=$host_gid \
         --build-arg VSCODE_COMMIT_ID=$(code --version | awk '/[a-f]/ {print $0}') \
@@ -23,6 +27,5 @@ function db {
         .
 }
 
-db "gcc_boost"
-# db "build_gcc_env"
-# db "run_gcc_env"
+db "gcc_boost_1_85_0"
+

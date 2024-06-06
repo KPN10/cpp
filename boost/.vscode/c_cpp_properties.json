@@ -7,7 +7,7 @@
             "name": "Linux",
             "compilerPath": "/usr/bin/g++",
             "intelliSenseMode": "linux-gcc-x64",
-            "cppStandard": "gnu++11",
+            "cppStandard": "c++17",
             "includePath": [ "/usr/include",
                 "${boostPath}"
             ],
