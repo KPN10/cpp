@@ -1,0 +1,33 @@
+{
+    "build": {
+        "dockerfile": "../Dockerfile",
+        "args": {
+            "CONTAINER_USER_NAME": "${localEnv:USER}",
+            "CONTAINER_GROUP_NAME": "${localEnv:USER_GROUP}",
+            "CONTAINER_UID": "${localEnv:USER_UID}",
+            "CONTAINER_GID": "${localEnv:USER_GID}",
+            "UID": 1000,
+            "GID": 1000,
+            "VSCODE_COMMIT_ID": "611f9bfce64f25108829dd295f54a6894e87339d",
+            "PROXY": "http://192.168.1.1:3128"
+        }
+    },
+
+    "name": "app",
+    "image": "gcc",
+    "shutdownAction": "stopContainer",
+    "runArgs": [
+        "--name", "app"
+    ],
+    "remoteUser": "developer",
+    "remoteEnv": {
+
+    },
+    "customizations": {
+        "vscode" : {
+            "settings": {
+
+            }
+        }
+    }
+}
