@@ -11,7 +11,7 @@
             "BOOST_VERSION_PATCH": 0,
             "UID": 1000,
             "GID": 1000,
-            "VSCODE_COMMIT_ID": "89de5a8d4d6205e5b11647eb6a74844ca23d2573",
+            "VSCODE_COMMIT_ID": "611f9bfce64f25108829dd295f54a6894e87339d",
             "PROXY": "http://192.168.1.1:3128"
         }
     },
