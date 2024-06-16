@@ -15,6 +15,8 @@ elif [ "${compiler_version}" == "11.2" ]; then
     aarch64_compiler_cxx="${compiler_path}/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-g++"
 elif [ "${compiler_version}" == "12.3" ];then
     aarch64_compiler_cxx="${compiler_path}/arm-gnu-toolchain-12.3.rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-g++"
+elif [ "${compiler_version}" == "13.2" ]; then
+    aarch64_compiler_cxx="${compiler_path}/arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-g++"
 else
     echo "Compiler version: n/a"
     aarch64_compiler_cxx="n/a"

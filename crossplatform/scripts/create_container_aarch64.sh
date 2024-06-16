@@ -14,6 +14,10 @@ elif [ "${arm_gcc_version}" == "12.3" ]; then
     arm_gcc_link="https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu/12.3.rel1/binrel/arm-gnu-toolchain-12.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz"
     arm_gcc_name="arm-gnu-toolchain-12.3.rel1-x86_64-aarch64-none-linux-gnu"
     arm_gcc_name_tar="${arm_gcc_name}.tar.xz"
+elif [ "${arm_gcc_version}" == "13.2" ]; then
+    arm_gcc_link="https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu/13.2.rel1/binrel/arm-gnu-toolchain-13.2.rel1-x86_64-aarch64-none-linux-gnu.tar.xz"
+    arm_gcc_name="arm-gnu-toolchain-13.2.rel1-x86_64-aarch64-none-linux-gnu"
+    arm_gcc_name_tar="${arm_gcc_name}.tar.xz"
 else
     arm_gcc_link="n/a"
     arm_gcc_name="n/a"
