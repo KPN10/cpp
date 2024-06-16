@@ -1,6 +1,7 @@
 #!/bin/bash
 
-image_name="gcc_aarch64"
+gcc_version=$1
+image_name="gcc_${gcc_version}_aarch64"
 current_dir=$(pwd)
 workspace_path=$(dirname $current_dir)
 # echo $workspace_path
@@ -10,4 +11,4 @@ docker run \
     --rm \
     -v $workspace_path:/home/developer/workspace \
     $image_name \
-    /bin/bash /home/developer/workspace/scripts/build_aarch64.sh
+    /bin/bash /home/developer/workspace/scripts/build_aarch64.sh $gcc_version
