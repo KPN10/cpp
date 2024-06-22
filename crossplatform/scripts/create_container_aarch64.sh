@@ -27,8 +27,6 @@ fi
 host_uid=$(id -u)
 host_gid=$(id -g)
 
-# id=$(code --version | awk '/[a-f]/ {print $0}')
-# echo $id
 cd ..
 
 function db {
@@ -39,7 +37,6 @@ function db {
         --build-arg HTTP_PROXY="http://192.168.1.1:3128" \
         --build-arg UID=$host_uid \
         --build-arg GID=$host_gid \
-        --build-arg VSCODE_COMMIT_ID=$(code --version | awk '/[a-f]/ {print $0}') \
         --build-arg ARM_GCC_LINK=$arm_gcc_link \
         --build-arg ARM_GCC_NAME=$arm_gcc_name \
         --build-arg ARM_GCC_NAME_TAR=$arm_gcc_name_tar \
