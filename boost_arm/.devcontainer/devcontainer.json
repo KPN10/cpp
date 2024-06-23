@@ -1,0 +1,36 @@
+{
+    "build": {
+        "dockerfile": "../Dockerfile",
+        "args": {
+            "CONTAINER_USER_NAME": "${localEnv:USER}",
+            "CONTAINER_GROUP_NAME": "${localEnv:USER_GROUP}",
+            "CONTAINER_UID": "${localEnv:USER_UID}",
+            "CONTAINER_GID": "${localEnv:USER_GID}",
+            "BOOST_VERSION_MAJOR": 1,
+            "BOOST_VERSION_MINOR": 85,
+            "BOOST_VERSION_PATCH": 0,
+            "UID": 1000,
+            "GID": 1000,
+            "VSCODE_COMMIT_ID": "89de5a8d4d6205e5b11647eb6a74844ca23d2573",
+            "PROXY": "http://192.168.1.1:3128"
+        }
+    },
+
+    "name": "boost_1_85_0_sandbox",
+    "image": "gcc_boost_1_85_0",
+    "shutdownAction": "stopContainer",
+    "runArgs": [
+        "--name", "boost_1_85_0_sandbox"
+    ],
+    "remoteUser": "developer",
+    "remoteEnv": {
+
+    },
+    "customizations": {
+        "vscode" : {
+            "settings": {
+
+            }
+        }
+    }
+}

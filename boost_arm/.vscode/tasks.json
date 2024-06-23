@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "build active file",
+        "type": "shell",
+        "command": "${workspaceFolder}/scripts/build_aarch64_inside_container.sh",
+        "args": [
+          "10.3",
+          "${file}",
+          "${fileDirname}/${fileBasenameNoExtension}_aarch64",
+          "${workspaceFolder}"
+        ],
+        "options": {
+          "cwd": "${fileDirname}"
+        },
+        "presentation": {
+          "echo": true,
+          // "reveal": "silent",
+          "focus": true,
+          "close": false,
+          "panel": "shared",
+          // "showReuseMessage": false,
+          "clear": false
+        },
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "detail": ""
+      }
+    ]
+}

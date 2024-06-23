@@ -1,0 +1,54 @@
+FROM ubuntu:22.04
+ARG PROXY
+ARG BOOST_VERSION_MAJOR
+ARG BOOST_VERSION_MINOR
+ARG BOOST_VERSION_PATCH
+ARG UID
+ARG GID
+ARG ARM_GCC_LINK
+ARG ARM_GCC_NAME
+ARG ARM_GCC_NAME_TAR
+RUN apt update && apt upgrade -y
+RUN apt install sudo cmake make git curl xz-utils gcc g++ -y
+RUN addgroup -gid $GID nonroot && \
+    echo 'developer ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
+    useradd -m --uid $UID --gid $GID -s /bin/bash developer && \
+    usermod -aG sudo developer && \
+    chown -R developer:nonroot /home/developer && \
+    chmod -R 755 /home/developer
+USER developer
+WORKDIR /home/developer
+
+RUN mkdir /home/developer/toolchain && \
+    curl \
+    --proxy $PROXY \
+    -fsSL \
+    ${ARM_GCC_LINK} \
+    --output /home/developer/toolchain/${ARM_GCC_NAME_TAR} && \
+    cd /home/developer/toolchain/ && \
+    tar -xJf ${ARM_GCC_NAME_TAR}
+
+ENV BOOST_VERSION=${BOOST_VERSION_MAJOR}_${BOOST_VERSION_MINOR}_${BOOST_VERSION_PATCH}
+RUN curl --proxy $PROXY \
+    "https://archives.boost.io/release/${BOOST_VERSION_MAJOR}.${BOOST_VERSION_MINOR}.${BOOST_VERSION_PATCH}/source/boost_${BOOST_VERSION}.tar.gz" \
+    -o /home/developer/boost_${BOOST_VERSION}.tar.gz && \
+    tar -xvzf boost_${BOOST_VERSION}.tar.gz && \
+    cd boost_${BOOST_VERSION} && \
+    echo "using gcc : arm : /home/developer/toolchain/${ARM_GCC_NAME}/bin/aarch64-none-linux-gnu-g++ ;" \
+    > user_config.jam && \
+    ./bootstrap.sh && \
+    sudo ./b2 install \
+    link=static \
+    cxxflags=-fPIC \
+    -toolset=/home/developer/toolchain/${ARM_GCC_NAME}/bin/aarch64-none-linux-gnu-g++ \
+    --with-test \
+    --with-log \
+    --with-program_options \
+    --with-json \
+    --with-thread \
+    --with-chrono \
+    --user-config=user_config.jam \
+    --prefix=/opt/boost && \
+    cd /home/developer && \
+    sudo rm -dRf boost_${BOOST_VERSION} && \
+    rm boost_${BOOST_VERSION}.tar.gz
