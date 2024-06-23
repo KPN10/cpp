@@ -1,0 +1,21 @@
+FROM ubuntu:22.04
+ARG UID
+ARG GID
+RUN apt update && apt upgrade -y
+RUN apt install \
+    sudo \
+    qemu-user \
+    qemu-user-static \
+    gcc-aarch64-linux-gnu \
+    binutils-aarch64-linux-gnu \
+    binutils-aarch64-linux-gnu-dbg \
+    build-essential \
+    -y
+RUN addgroup -gid $GID nonroot && \
+    echo 'developer ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
+    useradd -m --uid $UID --gid $GID -s /bin/bash developer && \
+    usermod -aG sudo developer && \
+    chown -R developer:nonroot /home/developer && \
+    chmod -R 755 /home/developer
+USER developer
+WORKDIR /home/developer

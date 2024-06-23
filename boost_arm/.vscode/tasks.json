@@ -28,6 +28,17 @@
           "isDefault": true
         },
         "detail": ""
+      },
+      {
+        "label": "run active file",
+        "type": "shell",
+        "command": "${workspaceFolder}/scripts/run_app_in_container.sh",
+        "args": [
+          "${file}"
+        ],
+        "options": {
+          "cwd": "${fileDirname}"
+        },
       }
     ]
 }
