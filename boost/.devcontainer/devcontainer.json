@@ -11,16 +11,16 @@
             "BOOST_VERSION_PATCH": 0,
             "UID": 1000,
             "GID": 1000,
-            "VSCODE_COMMIT_ID": "611f9bfce64f25108829dd295f54a6894e87339d",
             "PROXY": "http://192.168.1.1:3128"
         }
     },
-
+    "initializeCommand": "echo \"VSCODE_COMMIT_ID=$(code --version | awk '/[a-f]/ {print $0}')\" > .devcontainer/.env",
     "name": "boost_1_85_0_sandbox",
     "image": "gcc_boost_1_85_0",
     "shutdownAction": "stopContainer",
     "runArgs": [
-        "--name", "boost_1_85_0_sandbox"
+        "--name","boost_1_85_0_sandbox",
+        "--rm"
     ],
     "remoteUser": "developer",
     "remoteEnv": {
